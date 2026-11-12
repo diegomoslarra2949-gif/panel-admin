@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Noticias - Centro de Automatización Industrial SENA</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+    <header class="bg-success text-white text-center py-4 mb-4">
+        <h1 class="h3 mb-1">Centro de Automatización Industrial</h1>
+        <p class="mb-0">SENA Regional Valle · Portal de noticias</p>
+    </header>
+
+    <main class="container">
+        <div class="row g-4">
+            {% for noticia in noticias %}
+            <div class="col-12 col-md-6 col-lg-4">
+                <div class="card h-100 shadow-sm">
+                    <img src="{{ noticia.imagen.url }}" class="card-img-top" alt="{{ noticia.titulo }}"
+                         style="height: 220px; object-fit: cover;">
+                    <div class="card-body">
+                        <h2 class="h5 card-title">{{ noticia.titulo }}</h2>
+                        <p class="text-muted small mb-2">
+                            📅 {{ noticia.fecha|date:"d/m/Y" }} · 📍 {{ noticia.lugar }}
+                        </p>
+                        <p class="card-text">{{ noticia.descripcion }}</p>
+                    </div>
+                </div>
+            </div>
+            {% empty %}
+            <p class="text-center text-muted">Aún no hay noticias publicadas.</p>
+            {% endfor %}
+        </div>
+    </main>
+
+    <footer class="text-center text-muted py-4 mt-4">
+        SENA · Centro de Automatización Industrial
+    </footer>
+
+</body>
+</html>
